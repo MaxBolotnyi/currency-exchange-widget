@@ -110,8 +110,8 @@ const useConversionForm = ({
   const isValid = [
     sourceAcc,
     destAcc,
-    sourceAmount,
-    destAmount,
+    Number(sourceAmount),
+    Number(destAmount),
     !outOfBound,
     sourceAcc !== destAcc,
     !isError,
