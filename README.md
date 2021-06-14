@@ -2,6 +2,8 @@ Live demo of the project: https://maxbolotnyi.github.io/currency-exchange-widget
 
 App also supports the dark/light mode.
 
+App has only 1 console error which is caused by the Component Library (Material-ui) and not by the app itself
+
 ## Available Scripts
 In the project directory, you can run:
 
