@@ -93,16 +93,16 @@ const useConversionForm = ({
   const updateDependantField = () => {
     if (liveUpdateField === 'src' && destAmount) {
       const newVal = !!data?.rate && (+destAmount / data.rate);
-      setSourceAmount(newVal ? `${newVal}` : '');
+      setSourceAmount(newVal ? `${newVal}` : sourceAmount);
     } else if (liveUpdateField === 'dest' && sourceAmount) {
-      setDestAmount(data?.amount ? `${data.amount}` : '');
+      setDestAmount(data?.amount ? `${data.amount}` : destAmount);
     }
   };
 
   React.useEffect(toggleLiveUpdateField,
     [sourceAcc, destAcc, destAmount, sourceAmount, liveUpdateField]);
   React.useEffect(updateDependantField,
-    [liveUpdateField, data, sourceAmount, destAmount]);
+    [liveUpdateField, data, sourceAmount, destAmount, destAcc, sourceAcc]);
   React.useEffect(onExhange,
     [submit, data, sourceAcc, sourceAmount, destAcc, destAmount, dispatch, isSuccess]);
 
