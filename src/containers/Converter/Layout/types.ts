@@ -23,5 +23,5 @@ export type TConverterLayoutProps = {
     },
     isValid?: boolean;
     onSumbit: () => void;
-    exchangeRate?: number;
+    exchangeRate?: number | false;
 };

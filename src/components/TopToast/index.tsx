@@ -6,37 +6,39 @@ import { useStyles } from './styles';
 import type { TTopToastProps } from './types';
 
 const TopToast = React.memo(({
-    children,
-    open = false,
-    onDelayedClose,
-    delay = 1600,
-    ...props
+  children,
+  open = false,
+  onDelayedClose,
+  delay = 1600,
+  ...props
 }: TTopToastProps) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    React.useEffect(() => {
-        let timeout: ReturnType<typeof setTimeout>;
-        if (open) {
-            timeout = setTimeout(() => {
-                !!onDelayedClose && onDelayedClose();
-            }, delay);
+  React.useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    if (open) {
+      timeout = setTimeout(() => {
+        if (onDelayedClose) {
+          onDelayedClose();
         }
-        return () => {
-            if (timeout) {
-                clearTimeout(timeout)
-            }
-        };
-    }, [open, delay, onDelayedClose]);
+      }, delay);
+    }
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [open, delay, onDelayedClose]);
 
-    return (
-        <Alert
-            {...props}
-            className={`${classes.root} ${open ? classes.open : ''}`}
-            variant="filled"
-        >
-            {children}
-        </Alert>
-    );
+  return (
+    <Alert
+      {...props}
+      className={`${classes.root} ${open ? classes.open : ''}`}
+      variant="filled"
+    >
+      {children}
+    </Alert>
+  );
 });
 
 export default TopToast;
