@@ -11,3 +11,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm run test`
 Launches the test runner and tests in the interactive watch mode.
+
+### `npm run lint`
+Launches the linting over all ts ans tsx files.
+
