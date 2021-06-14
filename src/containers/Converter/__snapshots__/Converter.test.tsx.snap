@@ -1,0 +1,260 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the snapshot 1`] = `
+<div>
+  <div
+    class="makeStyles-container-6"
+  >
+    <div
+      class="MuiPaper-root MuiAlert-root MuiAlert-filledSuccess makeStyles-root-7  MuiPaper-elevation0"
+      role="alert"
+    >
+      <div
+        class="MuiAlert-icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2, 4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0, 0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"
+          />
+        </svg>
+      </div>
+      <div
+        class="MuiAlert-message"
+      >
+        Done!
+      </div>
+    </div>
+    <div
+      class="makeStyles-container-4"
+    >
+      <div
+        class="MuiFormControl-root MuiTextField-root makeStyles-select-2"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
+          data-shrink="false"
+          for="sourceAcc"
+          id="sourceAcc-label"
+        >
+          Source Account
+        </label>
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+        >
+          <div
+            aria-haspopup="listbox"
+            aria-labelledby="sourceAcc-label sourceAcc"
+            class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+            id="sourceAcc"
+            role="button"
+            tabindex="0"
+          >
+            <span>
+              ​
+            </span>
+          </div>
+          <input
+            aria-hidden="true"
+            class="MuiSelect-nativeInput"
+            name="sourceAcc"
+            tabindex="-1"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="PrivateNotchedOutline-legendLabelled-11"
+            >
+              <span>
+                Source Account
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        class="MuiFormControl-root MuiTextField-root makeStyles-select-2"
+      >
+        <label
+          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined"
+          data-shrink="false"
+          for="destAcc"
+          id="destAcc-label"
+        >
+          Destination Account
+        </label>
+        <div
+          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+        >
+          <div
+            aria-haspopup="listbox"
+            aria-labelledby="destAcc-label destAcc"
+            class="MuiSelect-root MuiSelect-select MuiSelect-selectMenu MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input"
+            id="destAcc"
+            role="button"
+            tabindex="0"
+          >
+            <span>
+              ​
+            </span>
+          </div>
+          <input
+            aria-hidden="true"
+            class="MuiSelect-nativeInput"
+            name="destAcc"
+            tabindex="-1"
+            value=""
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSelect-icon MuiSelect-iconOutlined"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+          <fieldset
+            aria-hidden="true"
+            class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              class="PrivateNotchedOutline-legendLabelled-11"
+            >
+              <span>
+                Destination Account
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+      <div
+        class="makeStyles-row-3"
+      >
+        <div
+          class="MuiFormControl-root makeStyles-marginRight-1"
+        >
+          <div
+            class="MuiFormControl-root MuiTextField-root"
+          >
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            >
+              <div
+                class="MuiInputAdornment-root MuiInputAdornment-positionStart"
+                data-testid="currency-sign"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+                >
+                  $
+                </p>
+              </div>
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+                id="srcAmount"
+                name="srcAmount"
+                placeholder="0.00"
+                style="text-align: right;"
+                type="text"
+                value=""
+              />
+              <fieldset
+                aria-hidden="true"
+                class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
+                style="padding-left: 8px;"
+              >
+                <legend
+                  class="PrivateNotchedOutline-legend-10"
+                  style="width: 0.01px;"
+                >
+                  <span>
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiFormControl-root"
+        >
+          <div
+            class="MuiFormControl-root MuiTextField-root"
+          >
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+            >
+              <div
+                class="MuiInputAdornment-root MuiInputAdornment-positionStart"
+                data-testid="currency-sign"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+                >
+                  $
+                </p>
+              </div>
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+                id="destAmount"
+                name="destAmount"
+                placeholder="0.00"
+                style="text-align: right;"
+                type="text"
+                value=""
+              />
+              <fieldset
+                aria-hidden="true"
+                class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
+                style="padding-left: 8px;"
+              >
+                <legend
+                  class="PrivateNotchedOutline-legend-10"
+                  style="width: 0.01px;"
+                >
+                  <span>
+                    ​
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="MuiButtonBase-root MuiButton-root makeStyles-root-13 MuiButton-text Mui-disabled makeStyles-disabled-14 Mui-disabled"
+      disabled=""
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        class="MuiButton-label makeStyles-label-15"
+      >
+        Exchange
+      </span>
+    </button>
+  </div>
+</div>
+`;

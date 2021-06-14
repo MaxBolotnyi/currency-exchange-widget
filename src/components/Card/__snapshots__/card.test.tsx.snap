@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders card 1`] = `
+<div>
+  <div
+    class="makeStyles-container-1"
+  />
+</div>
+`;

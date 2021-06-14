@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button 1`] = `
+<div>
+  <button
+    class="MuiButtonBase-root MuiButton-root makeStyles-root-1 MuiButton-text"
+    tabindex="0"
+    type="button"
+  >
+    <span
+      class="MuiButton-label makeStyles-label-3"
+    />
+    <span
+      class="MuiTouchRipple-root"
+    />
+  </button>
+</div>
+`;

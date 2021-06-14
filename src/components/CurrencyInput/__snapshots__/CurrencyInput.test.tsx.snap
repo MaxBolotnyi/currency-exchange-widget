@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with necessary props renders and matches snapshot 1`] = `
+<div>
+  <div
+    class="MuiFormControl-root"
+  >
+    <div
+      class="MuiFormControl-root MuiTextField-root"
+    >
+      <div
+        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+      >
+        <div
+          class="MuiInputAdornment-root MuiInputAdornment-positionStart"
+          data-testid="currency-sign"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 MuiTypography-colorTextSecondary"
+          >
+            $
+          </p>
+        </div>
+        <input
+          aria-invalid="false"
+          class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+          placeholder="0.00"
+          style="text-align: right;"
+          type="text"
+          value=""
+        />
+        <fieldset
+          aria-hidden="true"
+          class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
+          style="padding-left: 8px;"
+        >
+          <legend
+            class="PrivateNotchedOutline-legend-2"
+            style="width: 0.01px;"
+          >
+            <span>
+              ​
+            </span>
+          </legend>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+`;
