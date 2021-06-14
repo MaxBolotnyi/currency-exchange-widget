@@ -59,6 +59,7 @@ const ConverterLayout = React.memo(({
             id="srcAmount"
             name="srcAmount"
             error={outOfBound}
+            disabled={!src.accountId}
             helperText={outOfBound && 'Not enough money'}
             className={classes.marginRight}
             currency={src.currency}
@@ -68,6 +69,7 @@ const ConverterLayout = React.memo(({
           <CurrencyInput
             id="destAmount"
             name="destAmount"
+            disabled={!dest.accountId}
             currency={dest.currency}
             value={dest.amount}
             onChange={dest.onValChange}

@@ -7,6 +7,7 @@ import type {
   ThunkResult,
   TThunkDispatch,
 } from './types';
+import { getProperlyRounded } from '../../utils/currencies';
 
 export const getAccounts = (): ThunkResult<void> => async (dispatch: TThunkDispatch) => {
   // Let's assume the accounts data is fetched here and the posible
@@ -36,6 +37,12 @@ export const makeTransaction = ({
 
   const newSourceAmount = sourceAccount.balance - source.amount;
   const newDestAmount = destAccount.balance + destination.amount;
-  dispatch(updateAccountBalance({ id: sourceAccount.id, newBalance: +newSourceAmount.toFixed(2) }));
-  dispatch(updateAccountBalance({ id: destAccount.id, newBalance: +newDestAmount.toFixed(2) }));
+  dispatch(updateAccountBalance({
+    id: sourceAccount.id,
+    newBalance: +getProperlyRounded(newSourceAmount),
+  }));
+  dispatch(updateAccountBalance({
+    id: destAccount.id,
+    newBalance: +getProperlyRounded(newDestAmount),
+  }));
 };

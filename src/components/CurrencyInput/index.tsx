@@ -6,9 +6,10 @@ import FormControl from '@material-ui/core/FormControl';
 import {
   toCurrencyString,
   getCurrencySymbol,
-  appendPrecision,
   stripNonDigits,
+  getProperlyRounded,
 } from '../../utils/currencies';
+import { DEFAULT_CURRENCY } from '../../constants';
 
 import type { TCurrencyInputProps } from './types';
 
@@ -17,7 +18,7 @@ const DEFAULT_VALUE = '';
 const CurrencyInput = React.memo(({
   label,
   value,
-  currency = 'USD',
+  currency = DEFAULT_CURRENCY,
   onChange,
   className,
   precision = 2,
@@ -32,14 +33,12 @@ const CurrencyInput = React.memo(({
     if (isFocused) {
       return;
     }
-    const newVal = String(value) ? String(value) : DEFAULT_VALUE;
-    let reservedValue = toCurrencyString({
-      amount: newVal,
+    const newVal = String(value) || DEFAULT_VALUE;
+    const rounded = getProperlyRounded(newVal, precision);
+    const reservedValue = toCurrencyString({
+      amount: rounded,
       precision,
     });
-    if (!isFocused) {
-      reservedValue = appendPrecision(reservedValue, precision);
-    }
     setInputVal(reservedValue);
   }, [value, precision, isFocused]);
 
@@ -53,10 +52,7 @@ const CurrencyInput = React.memo(({
     });
     setInputVal(converted);
     if (onChange) {
-      onChange({
-        value: Number(digits).toFixed(precision),
-        originalEvent: event,
-      });
+      onChange(getProperlyRounded(digits, precision));
     }
   };
 
@@ -64,10 +60,14 @@ const CurrencyInput = React.memo(({
     if (!inputVal) {
       return;
     }
-    const withPrecision = appendPrecision(inputVal);
-    setInputVal(withPrecision);
+    const withPrecision = getProperlyRounded(inputVal);
+    const converted = toCurrencyString({
+      amount: withPrecision,
+      precision,
+    });
+    setInputVal(converted);
     setIsFocused(false);
-  }, [inputVal]);
+  }, [inputVal, precision]);
 
   return (
     <FormControl className={className} variant="outlined">

@@ -19,18 +19,17 @@ const AccountSelect = React.memo(({
     select
   >
     {
-                accounts.map((account) => {
-                  const accountBalance = toCurrencyString({
-                    amount: account.balance.toString(),
-                    precision: 2,
-                    currency: account.currency,
-                  });
-                  const accountLabel = `${account.name} - ${accountBalance}`;
-                  return (
-                    <MenuItem key={account.id} value={account.id}>{accountLabel}</MenuItem>
-                  );
-                })
-            }
+      accounts.map((account) => {
+        const accountBalance = toCurrencyString({
+          amount: account.balance.toString(),
+          currency: account.currency,
+        });
+        const accountLabel = `${account.name} - ${accountBalance}`;
+        return (
+          <MenuItem key={account.id} value={account.id}>{accountLabel}</MenuItem>
+        );
+      })
+    }
   </TextField>
 ));
 

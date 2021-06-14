@@ -1,5 +1,4 @@
 import type { TAccountSelectOnChangeProps } from '../../../components/AccountSelect/types';
-import type { TCurrencyInputOnChangeProp } from '../../../components/CurrencyInput/types';
 import type { TAccount } from '../../../reducers/types';
 
 export type TConverterLayoutProps = {
@@ -12,14 +11,14 @@ export type TConverterLayoutProps = {
         balance: number;
         currency: string;
         onAccountChange: (event: TAccountSelectOnChangeProps) => void;
-        onValChange: (event: TCurrencyInputOnChangeProp) => void;
+        onValChange: (value: string) => void;
     }
     dest: {
         amount: string;
         accountId: string;
         currency: string;
         onAccountChange: (event: TAccountSelectOnChangeProps) => void;
-        onValChange: (event: TCurrencyInputOnChangeProp) => void;
+        onValChange: (value: string) => void;
     },
     isValid?: boolean;
     onSumbit: () => void;

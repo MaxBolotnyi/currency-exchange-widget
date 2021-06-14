@@ -156,7 +156,7 @@ exports[`matches the snapshot 1`] = `
             class="MuiFormControl-root MuiTextField-root"
           >
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+              class="MuiInputBase-root MuiOutlinedInput-root Mui-disabled Mui-disabled MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
             >
               <div
                 class="MuiInputAdornment-root MuiInputAdornment-positionStart"
@@ -170,7 +170,8 @@ exports[`matches the snapshot 1`] = `
               </div>
               <input
                 aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+                class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+                disabled=""
                 id="srcAmount"
                 name="srcAmount"
                 placeholder="0.00"
@@ -202,7 +203,7 @@ exports[`matches the snapshot 1`] = `
             class="MuiFormControl-root MuiTextField-root"
           >
             <div
-              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
+              class="MuiInputBase-root MuiOutlinedInput-root Mui-disabled Mui-disabled MuiInputBase-formControl MuiInputBase-adornedStart MuiOutlinedInput-adornedStart"
             >
               <div
                 class="MuiInputAdornment-root MuiInputAdornment-positionStart"
@@ -216,7 +217,8 @@ exports[`matches the snapshot 1`] = `
               </div>
               <input
                 aria-invalid="false"
-                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+                class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled Mui-disabled MuiInputBase-inputAdornedStart MuiOutlinedInput-inputAdornedStart"
+                disabled=""
                 id="destAmount"
                 name="destAmount"
                 placeholder="0.00"

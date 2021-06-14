@@ -14,3 +14,5 @@ export type TUseConversionFormReturn = {
     exchangeRate: number | false | undefined;
     data: TRateResponse;
 };
+
+export type TLiveField = 'src' | 'dest';

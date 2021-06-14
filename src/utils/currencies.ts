@@ -1,7 +1,7 @@
 export type TCurrencyStringConfig = {
-    amount: string | number,
-    precision?: number,
-    currency?: string
+  amount: string | number,
+  precision?: number,
+  currency?: string
 };
 
 export const getLocalString = ({
@@ -25,6 +25,15 @@ export const getLocalString = ({
 
 export const stripNonDigits = (string: string): string => string.replace(/[^0-9.]/g, '');
 
+export const getProperlyRounded = (value: string | number, precision = 2): string => {
+  const newVal = typeof value === 'string' ? stripNonDigits(value) : value;
+  if (!newVal) {
+    return '';
+  }
+  const coef = 10 ** precision;
+  return (Math.round(Number(newVal) * coef) / coef).toFixed(precision);
+};
+
 export const getCurrencySymbol = (currency: string): string => new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency,
@@ -41,30 +50,20 @@ export const toCurrencyString = ({
   }
 
   const hasDot = reservedVal.includes('.');
-  const [decimal, _fractional = ''] = reservedVal.split('.');
-  let fractional = _fractional;
+  const fractional = reservedVal.split('.')[1];
+  let precisionLength = fractional?.length || 0;
 
   if (fractional && fractional.length > precision) {
-    fractional = fractional.slice(0, precision);
-    reservedVal = `${decimal}.${fractional.slice(0, precision)}`;
+    precisionLength = precision;
+    reservedVal = getProperlyRounded(reservedVal, precision);
   }
 
   const converted = getLocalString({
     amount: reservedVal,
-    precision: fractional.length,
+    precision: precisionLength,
     currency,
   });
 
   const postfix = (hasDot && !fractional) ? '.' : '';
   return `${converted}${postfix}`;
-};
-
-export const appendPrecision = (amount: string, precision = 2): string => {
-  if (!parseFloat(amount)) {
-    return amount;
-  }
-  const [_decimal, fractional] = amount.split('.');
-  const decimal = _decimal || '0';
-  const defaultPrecision = '0'.repeat(precision);
-  return fractional ? `${decimal}.${fractional.padEnd(precision, '0')}` : `${decimal}.${defaultPrecision}`;
 };

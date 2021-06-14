@@ -7,7 +7,6 @@ import useAccounts from '../../hooks/useAccounts';
 import { useGetConversionRatesQuery } from '../../api';
 
 import type { TAccountSelectOnChangeProps } from '../../components/AccountSelect/types';
-import type { TCurrencyInputOnChangeProp } from '../../components/CurrencyInput/types';
 
 const Converter = React.memo(() => {
   const [showSuccessToast, setShowSuccessToast] = React.useState(false);
@@ -39,14 +38,6 @@ const Converter = React.memo(() => {
     setDestAcc(event.target.value);
   };
 
-  const onSourceAmountChange = (event: TCurrencyInputOnChangeProp) => {
-    setSrcAmount(event.value ? String(event.value) : '');
-  };
-
-  const onDestAmountChange = (event: TCurrencyInputOnChangeProp) => {
-    setDestAmount(event.value ? String(event.value) : '');
-  };
-
   const onExchange = () => {
     onSubmit();
     setShowSuccessToast(true);
@@ -70,14 +61,14 @@ const Converter = React.memo(() => {
         amount: sourceAmount,
         balance: getById(sourceAcc)?.balance,
         onAccountChange: onSourceAccChange,
-        onValChange: onSourceAmountChange,
+        onValChange: setSrcAmount,
       }}
       dest={{
         accountId: destAcc,
         currency: getById(destAcc)?.currency,
         amount: destAmount,
         onAccountChange: onDestAccChange,
-        onValChange: onDestAmountChange,
+        onValChange: setDestAmount,
       }}
     />
   );

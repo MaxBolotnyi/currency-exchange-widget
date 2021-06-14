@@ -4,21 +4,22 @@ import { useGetConversionRatesQuery } from '../../api';
 import { makeTransaction } from '../../actions/accounts';
 
 import type { TAccountsState } from '../../reducers/types';
-import type { TUseConversionFormReturn } from './types';
+import type { TUseConversionFormReturn, TLiveField } from './types';
+import { DEFAULT_CURRENCY } from '../../constants';
 
 const useConversionForm = ({
   accounts,
   useApiHook,
 }: {
-    accounts: TAccountsState['accounts'],
-    useApiHook: typeof useGetConversionRatesQuery
+  accounts: TAccountsState['accounts'],
+  useApiHook: typeof useGetConversionRatesQuery
 }): TUseConversionFormReturn => {
   const dispatch = useAppDispatch();
   const [sourceAcc, setSourceAcc] = React.useState('');
   const [destAcc, setDestAcc] = React.useState('');
   const [sourceAmount, setSourceAmount] = React.useState<string>('');
   const [destAmount, setDestAmount] = React.useState<string>('');
-  const [liveUpdateField, setliveUpdateField] = React.useState<'dest' | 'src'>('dest');
+  const [liveUpdateField, setliveUpdateField] = React.useState<TLiveField>('dest');
   const [submit, setSubmit] = React.useState(false);
 
   const getAccountById = React.useCallback((id: string) => accounts[id], [accounts]);
@@ -30,8 +31,8 @@ const useConversionForm = ({
     refetch,
   } = useApiHook({
     amount: sourceAmount || destAmount || 1,
-    from: getAccountById(sourceAcc)?.currency || 'USD',
-    to: getAccountById(destAcc)?.currency || 'USD',
+    from: getAccountById(sourceAcc)?.currency || DEFAULT_CURRENCY,
+    to: getAccountById(destAcc)?.currency || DEFAULT_CURRENCY,
   }, {
     skip: !sourceAcc || !destAcc,
     pollingInterval: 10000,
@@ -46,6 +47,7 @@ const useConversionForm = ({
       setliveUpdateField('dest');
     }
   };
+
   const onDestAmountChange = (value: string) => {
     setDestAmount(value);
     if (!value) {
