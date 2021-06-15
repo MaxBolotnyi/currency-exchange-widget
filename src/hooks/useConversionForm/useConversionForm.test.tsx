@@ -46,13 +46,13 @@ test('all fields could be setup', async () => {
   }), { wrapper });
 
   act(() => {
-    result.current.setSourceAcc('account-1');
-    result.current.setDestAcc('account-2');
+    result.current.setSourceAcc(mockData[0].id);
+    result.current.setDestAcc(mockData[1].id);
     result.current.setSrcAmount('15000');
   });
 
-  expect(result.current.sourceAcc).toBe('account-1');
-  expect(result.current.destAcc).toBe('account-2');
+  expect(result.current.sourceAcc).toBe(mockData[0].id);
+  expect(result.current.destAcc).toBe(mockData[1].id);
   expect(result.current.sourceAmount).toBe('15000');
 
   act(() => {
@@ -68,39 +68,33 @@ test('form returns exchangeRate and updates dest field with live rate', async ()
   }), { wrapper });
 
   act(() => {
-    result.current.setSourceAcc('account-1');
-    result.current.setDestAcc('account-2');
+    result.current.setSourceAcc(mockData[0].id);
+    result.current.setDestAcc(mockData[1].id);
     result.current.setSrcAmount('10000');
   });
-  await waitFor(() => {
-    expect(result.current.exchangeRate).not.toBeFalsy();
-  });
 
-  const amount = result.current.data ? String(result.current.data.amount) : '';
-  expect(amount).toBe(result.current.destAmount);
+  expect(result.current.exchangeRate).not.toBeFalsy();
+  expect(result.current.destAmount).toBe(result.current.data?.amount?.toString());
 });
 
 test('form returns exchangeRate and updates source field with live rate', async () => {
   const { result } = renderHook(() => useConversionForm({
     accounts: store.getState().accounts.accounts,
     useApiHook: (getUseMockApi(true) as typeof useGetConversionRatesQuery),
+    defaultLiveField: 'src',
   }), { wrapper });
 
   act(() => {
-    result.current.setSourceAcc('account-1');
-    result.current.setDestAcc('account-2');
-    result.current.setDestAmount('5000');
-  });
-  await waitFor(() => {
-    expect(result.current.exchangeRate).not.toBeFalsy();
+    result.current.setSourceAcc(mockData[0].id);
+    result.current.setDestAcc(mockData[1].id);
+    result.current.setDestAmount('100');
   });
 
-  const rate = result.current.exchangeRate ? result.current.exchangeRate : 1;
-  const newVal = (+result.current.destAmount / rate).toString();
-
-  await waitFor(() => {
-    expect(result.current.sourceAmount).toBe(newVal);
-  });
+  expect(result.current.exchangeRate).not.toBeFalsy();
+  const newValue = result.current.exchangeRate
+    ? (+result.current.destAmount / result.current.exchangeRate)
+    : result.current.sourceAmount;
+  expect(result.current.sourceAmount).toBe(String(newValue));
 });
 
 test('form is Valid only if all fields are not empty and accounts are different', async () => {
@@ -112,8 +106,8 @@ test('form is Valid only if all fields are not empty and accounts are different'
   expect(result.current.isValid).toBe(false);
 
   act(() => {
-    result.current.setSourceAcc('account-1');
-    result.current.setDestAcc('account-2');
+    result.current.setSourceAcc(mockData[0].id);
+    result.current.setDestAcc(mockData[1].id);
     result.current.setSrcAmount('5000');
   });
 
@@ -131,8 +125,8 @@ test('Submit works as expected', async () => {
   expect(result.current.isValid).toBe(false);
 
   act(() => {
-    result.current.setSourceAcc('account-1');
-    result.current.setDestAcc('account-2');
+    result.current.setSourceAcc(mockData[0].id);
+    result.current.setDestAcc(mockData[1].id);
     result.current.setSrcAmount('5000');
   });
 
@@ -140,7 +134,7 @@ test('Submit works as expected', async () => {
     expect(result.current.isValid).toBe(true);
   });
   const { accounts: accountsStateIn } = store.getState();
-  const initialBalance = accountsStateIn.accounts['account-1'].balance;
+  const initialBalance = accountsStateIn.accounts[mockData[0].id].balance;
 
   act(() => {
     result.current.onSubmit();
@@ -148,7 +142,7 @@ test('Submit works as expected', async () => {
 
   await waitFor(() => {
     const { accounts: accountsState } = store.getState();
-    expect(accountsState.accounts['account-1'].balance).toBe(initialBalance - 5000);
+    expect(accountsState.accounts[mockData[0].id].balance).toBe(initialBalance - 5000);
   });
 });
 
@@ -161,8 +155,8 @@ test('if the error from the server occurs the form should not be Valid and the r
   expect(result.current.isValid).toBe(false);
 
   act(() => {
-    result.current.setSourceAcc('account-1');
-    result.current.setDestAcc('account-2');
+    result.current.setSourceAcc(mockData[0].id);
+    result.current.setDestAcc(mockData[1].id);
     result.current.setSrcAmount('5000');
   });
 

@@ -19,9 +19,9 @@ describe('accountsReducer', () => {
   beforeEach(() => {
     filledStore = {
       accounts: {
-        'account-1': { ...mockData[0] },
-        'account-2': { ...mockData[1] },
-        'account-3': { ...mockData[2] },
+        [mockData[0].id]: { ...mockData[0] },
+        [mockData[1].id]: { ...mockData[1] },
+        [mockData[2].id]: { ...mockData[2] },
       },
     };
   });
@@ -37,15 +37,15 @@ describe('accountsReducer', () => {
     const { reducer } = accountsSlice;
     const updatedBalance = 15111;
     const state = reducer(filledStore, updateAccountBalance({
-      id: 'account-1',
+      id: mockData[0].id,
       newBalance: updatedBalance,
     }));
 
     expect(state).toStrictEqual({
       accounts: {
         ...filledStore.accounts,
-        'account-1': {
-          ...filledStore.accounts['account-1'],
+        [mockData[0].id]: {
+          ...filledStore.accounts[mockData[0].id],
           balance: updatedBalance,
         },
       },
@@ -54,12 +54,12 @@ describe('accountsReducer', () => {
 
   test('removeAccount can delete account', () => {
     const { reducer } = accountsSlice;
-    const state = reducer(filledStore, removeAccount('account-2'));
+    const state = reducer(filledStore, removeAccount(mockData[1].id));
 
     expect(state).toStrictEqual({
       accounts: {
-        'account-1': { ...mockData[0] },
-        'account-3': { ...mockData[2] },
+        [mockData[0].id]: { ...mockData[0] },
+        [mockData[2].id]: { ...mockData[2] },
       },
     });
   });

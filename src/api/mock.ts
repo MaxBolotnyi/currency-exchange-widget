@@ -7,8 +7,8 @@ const getUseMockApi = (success = true): CallableFunction => (_props: any, _optio
 
   const refetch = () => {
     setData({
-      rate: Math.random() * 2,
-      amount: 100 * Math.random() * 20,
+      rate: Math.random() * 2 + 1,
+      amount: 100 * Math.random() * 20 + 1,
     });
   };
   return {

@@ -42,9 +42,9 @@ describe('with mocked store', () => {
   test('returns the state object of accounts', async () => {
     const { result } = renderHook(() => useAccounts(), { wrapper });
     const accounts = {
-      'account-1': { ...mockData[0] },
-      'account-2': { ...mockData[1] },
-      'account-3': { ...mockData[2] },
+      [mockData[0].id]: { ...mockData[0] },
+      [mockData[1].id]: { ...mockData[1] },
+      [mockData[2].id]: { ...mockData[2] },
     };
     await waitFor(() => {
       expect(result.current.state.accounts).toEqual(accounts);
@@ -53,6 +53,6 @@ describe('with mocked store', () => {
 
   test('return getById function', async () => {
     const { result } = renderHook(() => useAccounts(), { wrapper });
-    expect(result.current.getById('account-2')).toStrictEqual(mockData[1]);
+    expect(result.current.getById(mockData[1].id)).toStrictEqual(mockData[1]);
   });
 });

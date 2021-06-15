@@ -1,25 +1,21 @@
 import React from 'react';
 import { useAppDispatch } from '../../store';
-import { useGetConversionRatesQuery } from '../../api';
 import { makeTransaction } from '../../actions/accounts';
 
-import type { TAccountsState } from '../../reducers/types';
-import type { TUseConversionFormReturn, TLiveField } from './types';
+import type { TUseConversionFormReturn, TLiveField, TUseConversionFormProps } from './types';
 import { DEFAULT_CURRENCY } from '../../constants';
 
 const useConversionForm = ({
   accounts,
   useApiHook,
-}: {
-  accounts: TAccountsState['accounts'],
-  useApiHook: typeof useGetConversionRatesQuery
-}): TUseConversionFormReturn => {
+  defaultLiveField = 'dest',
+}: TUseConversionFormProps): TUseConversionFormReturn => {
   const dispatch = useAppDispatch();
   const [sourceAcc, setSourceAcc] = React.useState('');
   const [destAcc, setDestAcc] = React.useState('');
   const [sourceAmount, setSourceAmount] = React.useState<string>('');
   const [destAmount, setDestAmount] = React.useState<string>('');
-  const [liveUpdateField, setliveUpdateField] = React.useState<TLiveField>('dest');
+  const [liveUpdateField, setliveUpdateField] = React.useState<TLiveField>(defaultLiveField);
   const [submit, setSubmit] = React.useState(false);
 
   const getAccountById = React.useCallback((id: string) => accounts[id], [accounts]);
@@ -81,15 +77,6 @@ const useConversionForm = ({
     }
   };
 
-  const toggleLiveUpdateField = () => {
-    const precondition = sourceAcc && destAcc;
-    if (precondition && sourceAmount && !destAmount) {
-      setliveUpdateField('dest');
-    } else if (precondition && destAmount && !sourceAmount) {
-      setliveUpdateField('src');
-    }
-  };
-
   const updateDependantField = () => {
     if (liveUpdateField === 'src' && destAmount) {
       const newVal = !!data?.rate && (+destAmount / data.rate);
@@ -99,8 +86,6 @@ const useConversionForm = ({
     }
   };
 
-  React.useEffect(toggleLiveUpdateField,
-    [sourceAcc, destAcc, destAmount, sourceAmount, liveUpdateField]);
   React.useEffect(updateDependantField,
     [liveUpdateField, data, sourceAmount, destAmount, destAcc, sourceAcc]);
   React.useEffect(onExhange,
@@ -115,6 +100,7 @@ const useConversionForm = ({
     !outOfBound,
     sourceAcc !== destAcc,
     !isError,
+    !!data?.rate,
   ].every((item) => !!item);
 
   return {
@@ -128,7 +114,7 @@ const useConversionForm = ({
     setDestAmount: onDestAmountChange,
     isValid,
     onSubmit,
-    exchangeRate: isSuccess && data?.rate,
+    exchangeRate: isSuccess && !!data?.rate && data?.rate,
     data,
   };
 };

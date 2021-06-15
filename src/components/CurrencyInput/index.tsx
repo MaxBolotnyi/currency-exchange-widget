@@ -57,6 +57,7 @@ const CurrencyInput = React.memo(({
   };
 
   const onBlur = React.useCallback(() => {
+    setIsFocused(false);
     if (!inputVal) {
       return;
     }
@@ -66,7 +67,6 @@ const CurrencyInput = React.memo(({
       precision,
     });
     setInputVal(converted);
-    setIsFocused(false);
   }, [inputVal, precision]);
 
   return (

@@ -15,9 +15,9 @@ let filledStore: TAccountsState;
 beforeEach(() => {
   filledStore = {
     accounts: {
-      'account-1': { ...mockData[0] },
-      'account-2': { ...mockData[1] },
-      'account-3': { ...mockData[2] },
+      [mockData[0].id]: { ...mockData[0] },
+      [mockData[1].id]: { ...mockData[1] },
+      [mockData[2].id]: { ...mockData[2] },
     },
   };
 });
@@ -43,8 +43,8 @@ describe('makeTransaction', () => {
 
   test('makeTransaction transfers money correctly', async () => {
     const { accounts: state } = mockStore.getState();
-    const sourceAccId = 'account-1';
-    const destAccId = 'account-2';
+    const sourceAccId = mockData[0].id;
+    const destAccId = mockData[1].id;
     const initialSourceBalance = state.accounts[sourceAccId].balance;
     const initialDestBalance = state.accounts[destAccId].balance;
 
@@ -69,7 +69,7 @@ describe('makeTransaction', () => {
   test('makes no transfer if one of the id is wrong', async () => {
     mockStore.dispatch(getAccounts());
     const sourceAccId = 'WRONG_ID';
-    const destAccId = 'account-2';
+    const destAccId = mockData[1].id;
 
     const transaction = {
       source: {
@@ -91,8 +91,8 @@ describe('makeTransaction', () => {
   test('makes no transfer if source account has less money than the given amount', async () => {
     mockStore.dispatch(getAccounts());
     const { accounts: state } = mockStore.getState();
-    const sourceAccId = 'account-1';
-    const destAccId = 'account-2';
+    const sourceAccId = mockData[0].id;
+    const destAccId = mockData[1].id;
     const initialSourceBalance = state.accounts[sourceAccId].balance;
 
     const transaction = {

@@ -1,4 +1,6 @@
+import { useGetConversionRatesQuery } from '../../api';
 import type { TRateResponse } from '../../api/types';
+import type { TAccountsState } from '../../reducers/types';
 
 export type TUseConversionFormReturn = {
     sourceAcc: string;
@@ -15,4 +17,11 @@ export type TUseConversionFormReturn = {
     data: TRateResponse;
 };
 
-export type TLiveField = 'src' | 'dest';
+export type TUseConversionFormProps = {
+    accounts: TAccountsState['accounts'];
+    useApiHook: typeof useGetConversionRatesQuery;
+    // for jest only
+    defaultLiveField?: TLiveField;
+};
+
+export type TLiveField = 'src' | 'dest' | undefined;
